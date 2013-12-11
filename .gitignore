@@ -1,0 +1,9 @@
+.settings
+build
+dist/
+*.pyc
+.DS_STORE
+.project
+.pydevproject.coverage
+.coverage
+.pydevproject
