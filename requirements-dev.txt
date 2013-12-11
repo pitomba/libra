@@ -1,0 +1,8 @@
+-r requirements.txt
+# -e git://github.com/victorpantoja/fabix.git@master#egg=fabix
+# -e git://github.com/victorpantoja/cuisine.git@master#egg=cuisine
+# -e git://github.com/fabric/fabric.git@master#egg=fabric
+# -e git://github.com/boto/boto.git@py3kport#egg=boto
+# -e git://github.com/paramiko/paramiko.git@master#egg=paramiko
+# ecdsa
+# pycrypto

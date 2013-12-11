@@ -1,6 +1,4 @@
 
-all: clean
-
 clean:
 	find . -name '*.pyc' | xargs rm -f
 	rm -rf build
@@ -10,7 +8,7 @@ deploy-prod:
 
 setup:
 	@echo "Installing dependencies..."
-	@pip install -r requirements-dev.txt
+	@pip install -r requirements-dev.txt --no-deps
 
 start:
 	PYTHONPATH=`pwd`:`pwd`/libra python libra/server.py ${PORT}
