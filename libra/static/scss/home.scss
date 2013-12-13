@@ -1,0 +1,30 @@
+@import "compass/css3";
+
+.logo{
+    float: left;
+    margin-right: 90px;
+}
+
+.search{
+    float: left;
+    margin: 0 auto;
+    width: 1055px;
+}
+
+input {
+    @include border-radius(5px);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border:1px solid #ccc;
+    font-size:20px;
+    width:300px;
+    min-height:30px;
+    display:block;
+    margin-bottom:15px;
+    margin-top:5px;
+    outline: none;
+}
+
+input[type=submit] {
+  background:none;
+  padding:10px;
+}

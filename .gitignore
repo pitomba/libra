@@ -7,6 +7,8 @@ dist/
 .pydevproject.coverage
 .coverage
 .pydevproject
+*.log
+*.sass-cache
 
 # Amazon
 *.cfg

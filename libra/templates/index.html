@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="/static/css/home.css"/>
+{% end %}
+
 {% block content %}
-<h1>Just a smile! So far...</h1>
+<div class="logo">
+<img width="60" height="60" src="/static/img/logo.png" />
+</div>
+<div class="search">
+	<h1>Simply Type Your URL</h1>
+	<form method="post">
+		<input type="url" id="url" name="url" placeholder="Your URL here!" required autofocus/>
+		<input type="submit" value="Analyze!" /> 
+	</form>
+</div>
 {% end %}

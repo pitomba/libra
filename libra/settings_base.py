@@ -1,4 +1,5 @@
 import os
+import logging
 from functools import partial
 
 
@@ -9,31 +10,7 @@ DEBUG = True
 TEMPLATE_PATH = get_path_to("templates")
 STATIC_PATH = get_path_to("static")
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'root': {
-        'level': 'NOTSET',
-        'handlers': ['console'],
-    },
-    'formatters': {
-        'detailed': {
-            'format': '%(asctime)s %(levelname)s %(message)s',
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s',
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-    },
-}
-
-MEMCACHE = {
-    'servers': ('localhost:11211',),
-    'socket_timeout': 1,
-}
+LOG_FILENAME = 'libra-app.log'
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
+                    filename=LOG_FILENAME,
+                    level=logging.DEBUG)

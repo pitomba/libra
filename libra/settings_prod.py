@@ -1,16 +1,9 @@
 from settings_base import *
 
 PORT = 9083
-
 SERVER_NAME = 'http://pitomba.org'
 
-DEBUG = False
-
-LOGGING['root']['handlers'] = ['file']
-LOGGING['handlers']['file'] = {
-    'level': 'INFO',
-    'class': 'logging.FileHandler',
-    'formatter': 'detailed',
-    'filename': '/opt/logs/libra/app.log',
-    'encoding': 'utf-8',
-}
+LOG_FILENAME = 'libra-app.log'
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
+                    filename=LOG_FILENAME,
+                    level=logging.WARNING)
