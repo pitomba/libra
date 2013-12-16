@@ -32,7 +32,7 @@ class PageAnalytic(object):
         self.page_object.find_all(self._get_tag_size)
         for tag in self._tags:
             #threading?
-            resp = requests.get(tag.get_resource_url())
+            resp = requests.head(tag.get_resource_url())
             if resp.status_code == 200:
                 size += int(resp.headers["content-length"])
         self._tags = []
