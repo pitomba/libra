@@ -17,7 +17,7 @@ class TagProcessor(object):
 
 
 class ImgProcessor(TagProcessor):
-    def get_resource_url(self,):
+    def get_resource_url(self):
         return self.tag.attrs["src"]
 
     @classmethod
@@ -26,7 +26,7 @@ class ImgProcessor(TagProcessor):
 
 
 class ScriptProcessor(TagProcessor):
-    def get_resource_url(self,):
+    def get_resource_url(self):
         return self.tag.attrs["src"]
 
     @classmethod
@@ -35,7 +35,7 @@ class ScriptProcessor(TagProcessor):
 
 
 class LinkProcessor(TagProcessor):
-    def get_resource_url(self,):
+    def get_resource_url(self):
         return self.tag.attrs["href"]
 
     @classmethod
@@ -44,7 +44,7 @@ class LinkProcessor(TagProcessor):
 
 
 class EmbedProcessor(TagProcessor):
-    def get_resource_url(self,):
+    def get_resource_url(self):
         return self.tag.attrs["src"]
 
     @classmethod
@@ -53,7 +53,7 @@ class EmbedProcessor(TagProcessor):
 
 
 class ObjectProcessor(TagProcessor):
-    def get_resource_url(self,):
+    def get_resource_url(self):
         return self.tag.attrs["data"]
 
     @classmethod
