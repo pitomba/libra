@@ -32,7 +32,7 @@
 
   FB.Event.subscribe('auth.authResponseChange', function(response) {
     if (response.status === 'connected') {
-      testAPI();
+      getSession(response.authResponse.userID);
     } else if (response.status === 'not_authorized') {
       FB.login();
     } else {
@@ -50,17 +50,23 @@
    ref.parentNode.insertBefore(js, ref);
   }(document));
 
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-    });
+  function getSession(userID) {
+	  var requestSession = new Request({
+		  async: false,
+		  method: 'get',
+		  noCache: false,
+		  onSuccess: function(responseText, responseXML){
+			console.log(responseText, responseXML);
+		  },
+		  onFailure: function(xhr){
+			  console.log(xhr);
+		  },
+		  url: '/api/authenticate/' + userID
+	  });
+
+	  requestSession.send();
   }
 </script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked. -->
 
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 {% end %}
