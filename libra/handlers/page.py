@@ -1,10 +1,13 @@
 # coding: utf-8
 from bs4 import BeautifulSoup
-import requests
+from bson.objectid import ObjectId
 from tornado.web import RequestHandler
 from processor.page_analytic import PageAnalytic
 from processor.processor import TagProcessor
 from libra.handlers.base import authenticated
+from libra.models.page import Page
+
+import requests
 
 
 class PageHandler(RequestHandler):
@@ -21,10 +24,9 @@ class UserPageHandler(RequestHandler):
 
     @authenticated
     def post(self, user, **kwargs):
-        id_dict = {"_id": user['_id']}
-
-        update_dict = {"$push": {"pages": {"url": self.get_argument('url')}}}
-
-        user.update(id_dict=id_dict, update_dict=update_dict)
+        page = Page()
+        page._id = ObjectId()
+        page.user_id = user['_id']
+        page.save()
 
         self.write({"msg": "Success"})
