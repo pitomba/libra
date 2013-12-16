@@ -3,8 +3,9 @@ from tornado.web import RequestHandler
 from libra.handlers.base import authenticated
 
 
-class HomeHandler(RequestHandler):
+class UserHandler(RequestHandler):
 
     @authenticated
-    def get(self, user, **kwargs):
-        self.render("home.html", user=user)
+    def post(self, user, **kwargs):
+
+        self.write({"msg": "Success"})

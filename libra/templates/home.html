@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block js_top %}
+<script type="text/javascript" src="/static/js/user.js"></script>
+{% end %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/home.css"/>
+{% end %}
+
+{% block content %}
+<section>
+{% for page in user['pages'] %}
+<h1>page.name</h1>
+{% end %}
+</section>
+
+<section>
+    <div class="search">
+		<h1>Add New Page</h1>
+		<form method="post" id="create_page">
+		    <input type="url" id="url" name="url" placeholder="Your URL here!" required autofocus/>
+		    <input type="submit" value="add" /> 
+		</form>
+	</div>
+</section>
+
+{% end %}

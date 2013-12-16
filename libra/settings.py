@@ -1,7 +1,7 @@
 from settings_base import *
 
 PORT = 80
-SERVER_NAME = 'http://0.0.0.0:%s' % PORT
+SERVER_NAME = 'http://libra.pitomba.org:%s' % PORT
 
 MONGODB_DATABASE_URL = "localhost"
 MONGODB_DATABASE_PORT = 27017

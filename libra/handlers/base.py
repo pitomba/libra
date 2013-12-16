@@ -1,18 +1,21 @@
 # coding: utf-8
 from libra.models.user import User
+from bson.objectid import ObjectId
+from libra import settings
 
 
 def authenticated(fn):
     def authenticated_fn(self, *args, **kw):
-
-        request_handler = kw.get('request_handler')
-
-        user_id = request_handler.get_secure_cookie('USERID')
+        user_id = self.get_secure_cookie('LIBRAID')
 
         user = None
 
         if user_id:
-            user = User().get(int(user_id))
+            user = User().find_one({'_id': ObjectId(
+                                            user_id.decode(encoding='UTF-8'))})
+
+        if not user:
+            self.redirect(settings.SERVER_NAME)
 
         return fn(self, user=user, *args, **kw)
 

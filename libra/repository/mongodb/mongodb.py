@@ -40,7 +40,7 @@ class Repository(object):
         db = get_database()
         return getattr(db, self.__collection__)
 
-    def update(self, id_dict, update_dict, callback):
+    def update(self, id_dict, update_dict):
         self.get_collection().update(id_dict, update_dict, safe=True)
 
     def save(self):

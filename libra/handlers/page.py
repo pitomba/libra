@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import requests
 from tornado.web import RequestHandler
 from handlers.processor import TagProcessor
+from libra.handlers.base import authenticated
+
+from datetime import datetime
 
 
 class PageAnalytic(object):
@@ -46,3 +49,18 @@ class PageHandler(RequestHandler):
     def post(self, **kwargs):
         page = PageAnalytic(self.get_argument("url"))
         self.render("index.html")
+
+
+class UserPageHandler(RequestHandler):
+
+    @authenticated
+    def post(self, user, **kwargs):
+        import pdb;pdb.set_trace()
+        id_dict = {"_id": user['_id']}
+
+        update_dict = {"$set": {"pages": {"url": "teste",
+                                           "created_dt": datetime.now()}}}
+
+        user.update(id_dict=id_dict, update_dict=update_dict)
+
+        self.write({"msg": "Success"})

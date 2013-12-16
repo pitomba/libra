@@ -56,12 +56,12 @@
 		  method: 'get',
 		  noCache: false,
 		  onSuccess: function(responseText, responseXML){
-			console.log(responseText, responseXML);
+			  window.location.href = '/' + userID + '/'
 		  },
 		  onFailure: function(xhr){
 			  console.log(xhr);
 		  },
-		  url: '/api/authenticate/' + userID
+		  url: '/api/authenticate/' + userID + '/'
 	  });
 
 	  requestSession.send();

@@ -1,5 +1,6 @@
 # coding: utf-8
 from bson.objectid import ObjectId
+from datetime import datetime
 from libra.models.user import User
 from tornado.web import RequestHandler
 
@@ -14,6 +15,8 @@ class SessionHandler(RequestHandler):
             user = User()
             user._id = ObjectId()
             user.fb_id = fb_id
+            user.create_dt = datetime.now()
+            user.pages = []
             user.save()
 
         self.set_secure_cookie(name="LIBRAID",
