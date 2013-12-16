@@ -55,11 +55,9 @@ class UserPageHandler(RequestHandler):
 
     @authenticated
     def post(self, user, **kwargs):
-        import pdb;pdb.set_trace()
         id_dict = {"_id": user['_id']}
 
-        update_dict = {"$set": {"pages": {"url": "teste",
-                                           "created_dt": datetime.now()}}}
+        update_dict = {"$push": {"pages": {"url": self.get_argument('url')}}}
 
         user.update(id_dict=id_dict, update_dict=update_dict)
 
