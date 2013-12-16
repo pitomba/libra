@@ -14,15 +14,15 @@ class Property(object):
         self.name = None
         self.__doc__ = doc
 
-    def __get__(self, instance, owner):
-        if instance is None:
-            return self
-
-        value = instance._data.get(self.name)
-        if value is None:
-            return self.default
-
-        return value
+#     def __get__(self, instance, owner):
+#         if instance is None:
+#             return self
+# 
+#         value = instance._data.get(self.name)
+#         if value is None:
+#             return self.default
+# 
+#         return value
 
 #     def __set__(self, instance, value):
 #         if self.type and not isinstance(value, self.type):

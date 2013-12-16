@@ -1,6 +1,7 @@
 # coding utf-8
 from bs4 import BeautifulSoup
 import requests
+import logging
 
 
 class TagProcessor(object):
@@ -20,7 +21,10 @@ class TagProcessor(object):
 
 class ImgProcessor(TagProcessor):
     def get_resource_url(self):
-        return self.tag.attrs["src"]
+        try:
+            return self.tag.attrs["src"]
+        except:
+            logging.warning("Error getting attr src")
 
     @classmethod
     def is_resource(cls, tag):
@@ -33,7 +37,7 @@ class ScriptProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "script" and  tag.has_attr("src")
+        return tag.name == "script" and tag.has_attr("src")
 
 
 class LinkProcessor(TagProcessor):

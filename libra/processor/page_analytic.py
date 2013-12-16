@@ -7,8 +7,8 @@ class PageAnalytic(object):
 
     tagsClass = TagProcessor.__subclasses__()
 
-    def __init__(self, page):
-        response = requests.get(page)
+    def __init__(self, url):
+        response = requests.get(url)
         self.html_size = int(response.headers["content-length"])
         self.page_object = BeautifulSoup(response.content)
         self._tags = []
