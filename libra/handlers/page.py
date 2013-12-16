@@ -1,12 +1,9 @@
 # coding: utf-8
-from html.parser import HTMLParser
 from bs4 import BeautifulSoup
 import requests
 from tornado.web import RequestHandler
 from handlers.processor import TagProcessor
 from libra.handlers.base import authenticated
-
-from datetime import datetime
 
 
 class PageAnalytic(object):
@@ -40,6 +37,7 @@ class PageAnalytic(object):
 
     def get_page_size(self):
         return self.html_size + self.get_size_tag()
+
 
 class PageHandler(RequestHandler):
 
