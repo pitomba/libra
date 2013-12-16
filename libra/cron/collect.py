@@ -2,12 +2,30 @@
 #!/usr/bin/python
 from datetime import datetime
 import logging
+from libra.models.page import Page, PageData
+from bson.objectid import ObjectId
+from libra.processor.page_analytic import PageAnalytic
 
 
 def run():
     start = datetime.now()
     logging.debug("===================================================")
-    logging.debug("Verifying data for site {0} at {1}".format("site", start))
+    logging.debug("Starting at {0}".format(start))
+
+    for page in Page().find():
+        logging.debug("Verifying data for site {0}".format(page['url']))
+
+        try:
+            page_analytic = PageAnalytic(url=page['url'])
+
+            page_data = PageData()
+            page_data._id = ObjectId()
+            page_data.page_id = str(page['_id'])
+            page_data.date = datetime.now()
+            page_data.weight = page_analytic.get_page_size()
+            page_data.save()
+        except:
+            logging.exception("Error getting weight for {0}".format(page['url']))
 
     logging.debug("Finished!: {0}".format(datetime.now() - start))
     logging.debug("===================================================")

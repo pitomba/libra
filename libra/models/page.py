@@ -21,4 +21,3 @@ class PageData(Repository):
     page_id = Property(int, "page id")
     date = Property(datetime, "created on")
     weight = Property(int, "page weight")
-    url = Property(str, "page url")
