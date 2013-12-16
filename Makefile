@@ -12,3 +12,7 @@ setup:
 
 start:
 	PYTHONPATH=`pwd`:`pwd`/libra python libra/server.py ${PORT}
+
+start-cron:
+	@echo "Starting cron..."
+	PYTHONPATH=`pwd`:`pwd`/libra python libra/crontab.py -c
