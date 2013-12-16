@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block js_frame %}
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+ {% end %}
+{% block js_top %}
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
+<script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.5/js/dx.chartjs.js"></script>
+{% end %}
+{% block content %}
+<div id="chartContainer" style="max-width:1024px;height: 400px;" ></div>
+        <script>
+          var dataSource = [
+            { dia: '01/01/2013', peso: 10},
+            { dia: '01/02/2013', peso: 12},
+            { dia: '01/03/2013', peso: 13},
+            { dia: '01/04/2013', peso: 14},
+            { dia: '01/05/2013', peso: 10},
+            { dia: '01/06/2013', peso: 9},
+            { dia: '01/07/2013', peso: 8},
+            { dia: '01/08/2013', peso: 15},
+            { dia: '01/09/2013', peso: 16},
+            { dia: '01/10/2013', peso: 17},
+            { dia: '01/11/2013', peso: 10},
+            { dia: '01/12/2013', peso: 11}];
+        $(function () {
+            $("#chartContainer").dxChart( {
+                        dataSource: dataSource,
+                title: "Peso em KBytes do globoesporte.com ao longo do ano",
+                series:{ argumentField: "dia", valueField: "peso"},
+                valueAxis: {  title: { text: "tamanho (KBytes)"} }
+    })
+
+        });
+        </script>
+{% end %}

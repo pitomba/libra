@@ -1,5 +1,6 @@
 # coding: utf-8
 from tornado.web import URLSpec
+from handlers.graph import GraphHandler
 
 from libra.handlers.page import PageHandler
 from libra.handlers.page import UserPageHandler
@@ -14,5 +15,6 @@ urls = (
     URLSpec(r'/(?P<fb_id>.[0-9]+)/$', HomeHandler, name='home'),
 
     URLSpec(r'/(?P<page>index.html)?', PageHandler, name='index_index'),
+    URLSpec(r'/graph/?', GraphHandler, name='graph'),
     URLSpec(r'/(?P<context>.[a-zA-Z]+)/?', PageHandler, name='index')
 )

@@ -7,5 +7,4 @@ class UserHandler(RequestHandler):
 
     @authenticated
     def post(self, user, **kwargs):
-
         self.write({"msg": "Success"})

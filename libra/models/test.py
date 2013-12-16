@@ -1,9 +1,9 @@
 from handlers.page import PageAnalytic
-from page import Site
+from page import Page
 
-site = Site()
-site.url = "http://globoesporte.globo.com"
-pg = PageAnalytic(site.url)
-site.length = pg.get_page_size()
+page = Page()
+page.url = "http://globoesporte.globo.com"
+pg = PageAnalytic(page.url)
+page.length = pg.get_page_size()
 
-print (site.length)
+print (page.length)

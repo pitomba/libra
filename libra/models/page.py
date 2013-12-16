@@ -1,12 +1,14 @@
+# coding: utf-8
 from bson import ObjectId
 from libra.repository.mongodb.mongodb import Repository
-from libra.repository import Property, PropertyDict
+from libra.repository import Property
 
 import datetime
 
-class Site(Repository):
+
+class Page(Repository):
     __collection__ = 'site'
     _id = Property(ObjectId, "site id")
-    url =  Property(str, "url id")
     date = Property(datetime, "Created on")
-    length = Property(int, "length id")
+    weight = Property(int, "page weight")
+    url = Property(str, "page url")
