@@ -22,32 +22,40 @@ class ImgProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "object"
+        return tag.name == "img"
 
-# class TagProcessor(object):
-#     def __init__(self, html_doc):
-#         self.soup = BeautifulSoup(html_doc)
-#
-#     def get_resource_url(self, tag):
-#         #should return the resource url for download
-#         url_tags = {
-#             'link': 'href',
-#             'script': 'src',
-#             'img': 'src',
-#             'embed': 'src',
-#             'object': 'data'
-#         }
-#
-#         for key, value in url_tags.items():
-#             if key == tag:
-#                 return tag.get(value)
-#
-#         return None
-#
-#     def is_resource(self, tag):
-#         #should return a boolean
-#         elements = self.soup.find_all(tag)
-#         if len(elements):
-#             return True
-#         else:
-#             return False
+
+class ScriptProcessor(TagProcessor):
+    def get_resource_url(self,):
+        return self.tag.attrs["src"]
+
+    @classmethod
+    def is_resource(cls, tag):
+        return tag.name == "script"
+
+
+class LinkProcessor(TagProcessor):
+    def get_resource_url(self,):
+        return self.tag.attrs["href"]
+
+    @classmethod
+    def is_resource(cls, tag):
+        return tag.name == "link"
+
+
+class EmbedProcessor(TagProcessor):
+    def get_resource_url(self,):
+        return self.tag.attrs["src"]
+
+    @classmethod
+    def is_resource(cls, tag):
+        return tag.name == "embed"
+
+
+class ObjectProcessor(TagProcessor):
+    def get_resource_url(self,):
+        return self.tag.attrs["data"]
+
+    @classmethod
+    def is_resource(cls, tag):
+        return tag.name == "object"
