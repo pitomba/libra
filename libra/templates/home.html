@@ -10,7 +10,7 @@
 {% block content %}
 <section>
 {% for page in user['pages'] %}
-<h1>page.name</h1>
+<h1>{{page['url']}}</h1>
 {% end %}
 </section>
 
