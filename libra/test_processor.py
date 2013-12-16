@@ -1,6 +1,6 @@
 # coding utf-8
 import unittest
-from handlers.processor import *
+from processor.processor import *
 from bs4 import BeautifulSoup
 
 
