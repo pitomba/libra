@@ -1,28 +1,42 @@
 # coding: utf-8
 from html.parser import HTMLParser
+from bs4 import BeautifulSoup
+import requests
 from tornado.web import RequestHandler
-
-from urllib import request
-
-inTD = False
+from handlers.processor import TagProcessor
 
 
-class MyHTMLParser(HTMLParser):
-    def handle_starttag(self, tag, attrs):
-        global inTD
-        if tag.upper() == "META":
-            inTD = True
+class PageAnalytic(object):
 
-    def handle_endtag(self, tag):
-        global inTD
-        if tag.upper() == "META":
-            inTD = False
+    tagsClass = TagProcessor.__subclasses__()
 
-    def handle_data(self, data):
-        global inTD
-        if inTD:
-            print(data)
+    def __init__(self, page):
+        response = requests.get(page)
+        self.html_size = int(response.headers["content-length"])
+        self.page_object = BeautifulSoup(response.content)
+        self._tags = []
 
+    def _get_tag_size(self, tag):
+        for subCls in self.tagsClass:
+            if subCls.is_resource(tag):
+                self._tags.append(subCls(tag))
+                return True
+        else:
+            return False
+
+    def get_size_tag(self):
+        size = 0
+        self.page_object.find_all(self._get_tag_size)
+        for tag in self._tags:
+            #threading?
+            resp = requests.get(tag.get_resource_url())
+            if resp.status_code == 200:
+                size += int(resp.headers["content-length"])
+        self._tags = []
+        return size
+
+    def get_page_size(self):
+        return self.html_size + self.get_size_tag()
 
 class PageHandler(RequestHandler):
 
@@ -30,9 +44,5 @@ class PageHandler(RequestHandler):
         self.render("index.html")
 
     def post(self, **kwargs):
-        parser = MyHTMLParser()
-        page = request.urlopen(self.get_argument("url")).read().decode("utf-8")
-        parser.feed(page)
-
-        import pdb;pdb.set_trace()
+        page = PageAnalytic(self.get_argument("url"))
         self.render("index.html")
