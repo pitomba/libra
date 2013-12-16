@@ -7,8 +7,18 @@ import datetime
 
 
 class Page(Repository):
-    __collection__ = 'site'
-    _id = Property(ObjectId, "site id")
-    date = Property(datetime, "Created on")
+    __collection__ = 'page'
+
+    _id = Property(ObjectId, "page id")
+    user_id = Property(ObjectId, "page id")
+    url = Property(str, "page url")
+
+
+class PageData(Repository):
+    __collection__ = 'page_data'
+
+    _id = Property(ObjectId, "page data id")
+    page_id = Property(ObjectId, "page id")
+    date = Property(datetime, "created on")
     weight = Property(int, "page weight")
     url = Property(str, "page url")
