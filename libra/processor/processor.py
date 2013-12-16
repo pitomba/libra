@@ -24,7 +24,7 @@ class ImgProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "img"
+        return tag.name == "img" and tag.has_attr("src")
 
 
 class ScriptProcessor(TagProcessor):
@@ -51,7 +51,7 @@ class EmbedProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "embed"
+        return tag.name == "embed" and tag.has_attr("src")
 
 
 class ObjectProcessor(TagProcessor):
@@ -60,4 +60,4 @@ class ObjectProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "object"
+        return tag.name == "object" and tag.has_attr("data")
