@@ -26,7 +26,8 @@ class UserPageHandler(RequestHandler):
     def post(self, user, **kwargs):
         page = Page()
         page._id = ObjectId()
-        page.user_id = user['_id']
+        page.user_id = str(user['_id'])
+        page.url = self.get_argument('url')
         page.save()
 
         self.write({"msg": "Success"})

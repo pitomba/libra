@@ -4,6 +4,7 @@ from libra.repository import Property, PropertyDict
 from libra.repository.mongodb.mongodb import Repository
 
 import datetime
+from libra.models.page import Page
 
 
 class User(Repository):
@@ -12,4 +13,7 @@ class User(Repository):
     _id = Property(ObjectId, "user id")
     create_dt = Property(datetime, "Created on")
     fb_id = Property(str, "Facebook id")
-    pages = Property(PropertyDict, "user's pages")
+
+    @classmethod
+    def pages(cls, user_id):
+        return Page().find()
