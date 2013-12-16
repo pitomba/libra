@@ -31,7 +31,7 @@ class ScriptProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "script"
+        return tag.name == "script" and  tag.has_attr("src")
 
 
 class LinkProcessor(TagProcessor):
@@ -40,7 +40,7 @@ class LinkProcessor(TagProcessor):
 
     @classmethod
     def is_resource(cls, tag):
-        return tag.name == "link"
+        return tag.name == "link" and tag.has_attr("rel") and tag.attrs["rel"] == ["stylesheet"]
 
 
 class EmbedProcessor(TagProcessor):
