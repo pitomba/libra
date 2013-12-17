@@ -32,6 +32,8 @@ input {
     margin-top:5px;
     outline: none;
     margin: 0 auto;
+    @include box-sizing(border-box);
+    padding: 5px 10px;
 }
 
 input[type=submit] {
@@ -41,6 +43,16 @@ input[type=submit] {
     border-color: brown;
     background: orange;
     color: brown;
+}
+
+li {
+    list-style: none;
+}
+
+li:before {
+    content: "~ ";
+    color: orangered;
+    font-weight: bold;
 }
 
 .logo {
@@ -68,6 +80,10 @@ input[type=submit] {
     display: inline;
 }
 
+.btn-remove{
+    cursor: pointer;
+}
+
 .history {
     position: absolute;
     overflow: hidden;
@@ -76,6 +92,13 @@ input[type=submit] {
     font-family: Helvetica, sans-serif;
 }
 
-.btn-remove{
-    cursor: pointer;
+.history a {
+    line-height: 20pt;
+    text-decoration: none;
+    color: brown;
+}
+
+.history a:hover {
+    font-weight: bold;
+    color: rgb(150, 55, 55);
 }
