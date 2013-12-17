@@ -38,11 +38,10 @@ class SiteHandler(RequestHandler):
     @authenticated
     def get(self, user, **kwargs):
         url = kwargs['url']
-#'01/01/2013'
         data = []
 
         for page_data in PageData().find({"page_url": url}):
             data.append({'date': page_data['date'].strftime("%Y/%m/%d %H:%M"),
-                         'weight': page_data['weight']})
+                         'weight': "{0:0.2f}".format(page_data['weight'] / 1024.0)})
 
         self.render("graph.html", dataSource=data, site=url)
