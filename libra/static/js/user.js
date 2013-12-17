@@ -2,21 +2,31 @@ var user = {
     init: function(){
         $('create_page').addEvent('submit', function(e){
             e.stop();
-            user.savePages();
+            user.changePages(action="add");
+        });
+        $$('.btn-remove').addEvent('click', function(e){
+            e.stop();
+            user.changePages(action="delete");
         });
     },
 		
-	savePages: function(){
+    changePages: function(action){
         var request = new Request.JSON({
             async: false,
-            method: 'post',
+            method: 'delete',
+            emulation: false,
             noCache: false,
             onSuccess: function(responseText, responseXML){
-            	var newA = new Element("a", {text: responseText.name,
-            		href: responseText.url});
-            	var newLI = new Element("li");
-            	newLI.adopt(newA);
-            	$$(".site-list").adopt(newLI); 
+            	if(action=='add'){
+                	var newA = new Element("a", {text: responseText.name,
+                		href: responseText.url});
+                	var newLI = new Element("li");
+                	newLI.adopt(newA);
+                	$$(".site-list").adopt(newLI); 
+            	}
+            	else{
+            	}
+
             },
             onFailure: function(xhr){
                 console.log(xhr);
@@ -24,7 +34,14 @@ var user = {
             url: '/api/page/'
         });
 
-        request.post($('create_page').toQueryString());
+        if(action=='add'){
+        	request.post($('create_page').toQueryString());
+        }
+        else{
+        	var parent = this.getParent();
+        	console.log(parent)
+        	request.send($('create_page').toQueryString());
+        }
 	}
 };
 

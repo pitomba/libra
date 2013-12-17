@@ -34,6 +34,12 @@ class UserPageHandler(RequestHandler):
                     "name": page.url,
                     "url": settings.SERVER_NAME + '/' + str(user['fb_id']) + '/' + page.url + '/'})
 
+    @authenticated
+    def delete(self, user, **kwargs):
+        import pdb;pdb.set_trace()
+        Page().remove({"user": str(user["_id"]),
+                       "url": self.get_argument('url')})
+
 
 class SiteHandler(RequestHandler):
 
