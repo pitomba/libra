@@ -7,12 +7,16 @@ var user = {
     },
 		
 	savePages: function(){
-        var request = new Request({
+        var request = new Request.JSON({
             async: false,
             method: 'post',
             noCache: false,
             onSuccess: function(responseText, responseXML){
-                console.log(responseText, responseXML);
+            	var newA = new Element("a", {text: responseText.name,
+            		href: responseText.url});
+            	var newLI = new Element("li");
+            	newLI.adopt(newA);
+            	$$(".site-list").adopt(newLI); 
             },
             onFailure: function(xhr){
                 console.log(xhr);

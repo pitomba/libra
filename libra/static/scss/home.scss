@@ -67,3 +67,15 @@ input[type=submit] {
 .fb-login {
     display: inline;
 }
+
+.history {
+    position: absolute;
+    overflow: hidden;
+    margin-top: 25px;
+    width: 450px;
+    font-family: Helvetica, sans-serif;
+}
+
+.btn-remove{
+    cursor: pointer;
+}
