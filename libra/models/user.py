@@ -1,6 +1,6 @@
 # coding: utf-8
 from bson.objectid import ObjectId
-from libra.repository import Property, PropertyDict
+from libra.repository import Property
 from libra.repository.mongodb.mongodb import Repository
 
 import datetime
@@ -16,4 +16,4 @@ class User(Repository):
 
     @classmethod
     def pages(cls, user_id):
-        return Page().find()
+        return Page().find({"user_id": user_id})

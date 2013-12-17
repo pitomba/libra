@@ -1,3 +1,4 @@
+# coding: utf-8
 from handlers.page import PageAnalytic
 from page import Page
 

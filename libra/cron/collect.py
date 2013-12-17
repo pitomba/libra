@@ -20,7 +20,7 @@ def run():
 
             page_data = PageData()
             page_data._id = ObjectId()
-            page_data.page_id = str(page['_id'])
+            page_data.page_url = str(page['url'])
             page_data.date = datetime.now()
             page_data.weight = page_analytic.get_page_size()
             page_data.save()

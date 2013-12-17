@@ -5,7 +5,7 @@ from tornado.web import RequestHandler
 from processor.page_analytic import PageAnalytic
 from processor.processor import TagProcessor
 from libra.handlers.base import authenticated
-from libra.models.page import Page
+from libra.models.page import Page, PageData
 
 import requests
 
@@ -31,3 +31,18 @@ class UserPageHandler(RequestHandler):
         page.save()
 
         self.write({"msg": "Success"})
+
+
+class SiteHandler(RequestHandler):
+
+    @authenticated
+    def get(self, user, **kwargs):
+        url = kwargs['url']
+#'01/01/2013'
+        data = []
+
+        for page_data in PageData().find({"page_url": url}):
+            data.append({'date': page_data['date'].strftime("%Y/%m/%d %H:%M"),
+                         'weight': page_data['weight']})
+
+        self.render("graph.html", dataSource=data, site=url)

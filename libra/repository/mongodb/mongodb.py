@@ -58,5 +58,8 @@ class Repository(object):
 
         return self.get_collection().find_one()
 
-    def find(self):
-        return self.get_collection().find()
+    def find(self, dict={}):
+        if not dict:
+            return self.get_collection().find()
+
+        return self.get_collection().find(dict)

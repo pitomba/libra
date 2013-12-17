@@ -18,6 +18,6 @@ class PageData(Repository):
     __collection__ = 'page_data'
 
     _id = Property(ObjectId, "page data id")
-    page_id = Property(int, "page id")
+    page_url = Property(int, "page id")
     date = Property(datetime, "created on")
     weight = Property(int, "page weight")

@@ -10,7 +10,9 @@
 {% block content %}
 <section>
 {% for page in pages %}
-<h1>{{page['url']}}</h1>
+	<h1>
+	    <a href="{{SERVER_NAME}}/{{user['fb_id']}}/{{page['url']}}">{{page['url']}}</a>
+	</h1>
 {% end %}
 </section>
 
