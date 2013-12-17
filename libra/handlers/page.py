@@ -5,6 +5,7 @@ from tornado.web import RequestHandler
 from processor.page_analytic import PageAnalytic
 from processor.processor import TagProcessor
 from libra.handlers.base import authenticated
+from libra.handlers.base import logged
 from libra.models.page import Page, PageData
 
 import requests
@@ -12,6 +13,7 @@ import requests
 
 class PageHandler(RequestHandler):
 
+    @logged
     def get(self, **kwargs):
         self.render("index.html")
 
