@@ -8,8 +8,9 @@ class PageAnalytic(object):
              "Accept-Encoding": "gzip"}
     tagsClass = TagProcessor.__subclasses__()
 
-    def __init__(self, page):
-        response = requests.get(page, headers=self.headers)
+    def __init__(self, url):
+        self.base_url = url
+        response = requests.get(url, headers=self.headers)
         self.html_size = int(response.headers["content-length"])
         self.page_object = BeautifulSoup(response.content)
         self._tags = []
@@ -17,7 +18,7 @@ class PageAnalytic(object):
     def _get_tag_size(self, tag):
         for subCls in self.tagsClass:
             if subCls.is_resource(tag):
-                self._tags.append(subCls(tag, base_url=))
+                self._tags.append(subCls(tag, base_url=self.base_url))
                 return True
         else:
             return False
@@ -28,6 +29,8 @@ class PageAnalytic(object):
         for tag in self._tags:
             #threading?
             resp = requests.head(tag.get_resource_url(), headers=self.headers)
+            while resp.status_code == 301 or resp.status_code == 302:
+                resp = requests.head(resp.headers["location"])
             if resp.status_code == 200:
                 size += int(resp.headers["content-length"])
         self._tags = []

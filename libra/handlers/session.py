@@ -16,7 +16,6 @@ class SessionHandler(RequestHandler):
             user._id = ObjectId()
             user.fb_id = fb_id
             user.create_dt = datetime.now()
-            user.pages = []
             user.save()
 
         self.set_secure_cookie(name="LIBRAID",
