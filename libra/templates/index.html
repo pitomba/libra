@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="logo">
-<img width="60" height="60" src="/static/img/logo.png" />
+  <img width="80" height="80" src="/static/img/logo.png" />
 </div>
 <div class="search">
 	<h1>Simply Type Your URL</h1>
@@ -14,8 +14,13 @@
 		<input type="url" id="url" name="url" placeholder="Your URL here!" required autofocus/>
 		<input type="submit" value="Analyze!" /> 
 	</form>
-	<h2>Or log in to get full features</h2>
-	<div id="fb-root"></div>
+	<div class="fb-cta">
+    <h2>Or log in to get full features:</h2>
+    <div class="fb-login">
+      <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+    </div>
+	</div>
+  <div id="fb-root"></div>
 </div>
 {% end %}
 
@@ -68,5 +73,4 @@
   }
 </script>
 
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 {% end %}
