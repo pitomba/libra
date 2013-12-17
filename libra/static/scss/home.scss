@@ -166,3 +166,35 @@ header {
     font-weight: bold;
     color: rgb(150, 55, 55);
 }
+
+footer{
+    clear: both;
+    
+    .content{
+        color: #fff;
+        margin-left: 100px;
+        background-color: orangered;
+        height: 150px;
+        width: 1055px;
+        margin: 0 auto !important;
+        min-width: 960px;
+        width: 80em;
+        text-align: left;
+    }
+    
+    .trademark{
+        font-size: 50px;
+        font-weight: lighter;
+        -webkit-transition: all .3s ease-in;
+        -moz-transition: all .3s ease-in;
+        -o-transition: all .3s ease-in;
+        transition: all .3s ease-in;
+        color: #fff;
+        float: left;
+        line-height: 50px;
+        letter-spacing: -1px;
+        margin-top: 60px;
+        margin-left: 100px;
+        text-decoration: none;
+    }
+}
