@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from tornado.web import RequestHandler
 from processor.page_analytic import PageAnalytic
 from processor.processor import TagProcessor
+from libra import settings
 from libra.handlers.base import authenticated
 from libra.handlers.base import logged
 from libra.models.page import Page, PageData
@@ -15,7 +16,8 @@ class PageHandler(RequestHandler):
 
     @logged
     def get(self, **kwargs):
-        self.render("index.html")
+        self.render("index.html",
+                    SERVER_NAME=settings.SERVER_NAME)
 
 
 class UserPageHandler(RequestHandler):
@@ -42,4 +44,6 @@ class SiteHandler(RequestHandler):
             data.append({'date': page_data['date'].strftime("%Y/%m/%d %H:%M"),
                          'weight': "{0:0.2f}".format(page_data['weight'] / 1024.0)})
 
-        self.render("graph.html", dataSource=data, site=url)
+        self.render("graph.html",
+                    dataSource=data, site=url,
+                    SERVER_NAME=settings.SERVER_NAME)
