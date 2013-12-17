@@ -4,12 +4,14 @@
 {% end %}
 
 {% block content %}
-<section>
+<section class="history">
+<ul>
 {% for page in pages %}
-	<h1>
+	<li>
 	    <a href="{{SERVER_NAME}}/{{user['fb_id']}}/{{page['url']}}">{{page['url']}}</a>
-	</h1>
+	</li>
 {% end %}
+</ul>
 </section>
 
 <section>
