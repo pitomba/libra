@@ -4,9 +4,17 @@ var user = {
             e.stop();
             user.changePages(action="add");
         });
+
         $$('.btn-remove').addEvent('click', function(e){
             e.stop();
             user.changePages(action="delete");
+        });
+        
+        $$('.logout').addEvent('click', function(e){
+        	Cookie.dispose('LIBRAID');
+        	FB.logout(function(){
+        		window.location.href = '/';
+        	});
         });
     },
 		

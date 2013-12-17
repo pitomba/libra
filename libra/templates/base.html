@@ -1,21 +1,33 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<html lang="en-US" itemscope itemtype="http://schema.org/WebPage">
 	<head>
-	    <meta charset="utf-8">
-	    <title>Libra</title>
-	    <meta name="description" content="A service to measure the weight along the time">
-        <link rel="stylesheet" href="/static/css/home.css"/>
-	    {% block css %}
-	    {% end %}
-        {% block js_frame %}
-	    <script type="text/javascript" src="/static/js/mootools-core-1.4.5.js"></script>
-        {% end %}
-	    {% block js_top %}
-	    {% end %}
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Libra - A service to measure the weight along the time</title>
+		<meta name="description" content="A service to measure the weight along the time">
+		<link rel="stylesheet" href="/static/css/home.css"/>
+		{% block css %}
+		{% end %}
+		   {% block js_frame %}
+		<script type="text/javascript" src="/static/js/mootools-core-1.4.5.js"></script>
+		   {% end %}
+		{% block js_top %}
+		{% end %}
 	</head>
 	<body>
-		<div class="logo">
-		  <a href="{{SERVER_NAME}}"><img width="80" height="80" src="/static/img/logo.png" /></a>
-		</div>
+	   <header>
+	        <div class="logo">
+	          <a href="{{SERVER_NAME}}"><img width="80" height="80" src="/static/img/logo.png" /></a>
+	        </div>
+	        <h1><a href="{{SERVER_NAME}}" class="link-logo">libra</a></h1>
+	        {% block user_info %}
+	        <nav>
+	           <div class="user-info">
+	           You are logged as <span class="user-name">Victor Pantoja<span class="logout">logout</span></span>
+	           </div>
+	        </nav>
+	        {% end %}
+	   </header>
+	
 	    {% block content %}
 	    {% end %}
 	

@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
+{% block user_info %}
+{% end %}
+
 {% block content %}
 <div class="search">
-	<h1>Simply Type Your URL</h1>
+	<h2>Simply Type Your URL</h2>
 	<form method="post">
 		<input type="url" id="url" name="url" placeholder="Your URL here!" required autofocus/>
 		<input type="submit" value="Analyze!" /> 

@@ -7,7 +7,7 @@
 <section class="history">
 	<ul class="site-list">
 	{% for page in pages %}
-		<li>
+		<li class="site-item">
 		    <a href="{{SERVER_NAME}}/{{user['fb_id']}}/{{page['url']}}">{{page['url']}}</a>
 		    <span class="btn-remove">[remover]</span>
 		</li>
@@ -17,12 +17,35 @@
 
 <section>
     <div class="search">
-		<h1>Add New Page</h1>
+		<h2>Add a New Page</h2>
 		<form method="post" id="create_page">
 		    <input type="url" id="url" name="url" placeholder="Your URL here!" required autofocus/>
 		    <input type="submit" value="add" /> 
 		</form>
 	</div>
 </section>
+
+{% end %}
+
+{% block js_fb %}
+<script>
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '515793125186609',
+    status     : true,
+    cookie     : true,
+    xfbml      : true});
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d){
+   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement('script'); js.id = id; js.async = true;
+   js.src = "//connect.facebook.net/en_US/all.js";
+   ref.parentNode.insertBefore(js, ref);
+  }(document));
+</script>
 
 {% end %}
