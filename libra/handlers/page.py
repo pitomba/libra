@@ -30,7 +30,9 @@ class UserPageHandler(RequestHandler):
         page.url = self.get_argument('url')
         page.save()
 
-        self.write({"msg": "Success"})
+        self.write({"msg": "Created!",
+                    "name": page.url,
+                    "url": settings.SERVER_NAME + '/' + str(user['fb_id']) + '/' + page.url + '/'})
 
 
 class SiteHandler(RequestHandler):

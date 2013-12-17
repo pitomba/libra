@@ -5,13 +5,13 @@
 
 {% block content %}
 <section class="history">
-<ul>
-{% for page in pages %}
-	<li>
-	    <a href="{{SERVER_NAME}}/{{user['fb_id']}}/{{page['url']}}">{{page['url']}}</a>
-	</li>
-{% end %}
-</ul>
+	<ul class="site-list">
+	{% for page in pages %}
+		<li>
+		    <a href="{{SERVER_NAME}}/{{user['fb_id']}}/{{page['url']}}">{{page['url']}}</a>
+		</li>
+	{% end %}
+	</ul>
 </section>
 
 <section>
