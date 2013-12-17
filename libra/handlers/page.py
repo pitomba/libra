@@ -1,4 +1,5 @@
 # coding: utf-8
+import datetime
 from bs4 import BeautifulSoup
 from bson.objectid import ObjectId
 from tornado.web import RequestHandler
@@ -47,11 +48,10 @@ class SiteHandler(RequestHandler):
     def get(self, user, **kwargs):
         url = kwargs['url']
         data = []
+        for page_data in PageData().find({"page_url": url,
+                                          "date": {"$gte": datetime.datetime.now() - datetime.timedelta(minutes=10)}}):
+            data.append({'date': page_data['date'].strftime("%Y/%m/%d %H:%M:%S"),
+                         'weight': page_data['weight']/1024.0})
+        data.sort(key=lambda x: x["date"])
+        self.render("graph.html", dataSource=data, site=url, SERVER_NAME=settings.SERVER_NAME)
 
-        for page_data in PageData().find({"page_url": url}):
-            data.append({'date': page_data['date'].strftime("%Y/%m/%d %H:%M"),
-                         'weight': "{0:0.2f}".format(page_data['weight'] / 1024.0)})
-
-        self.render("graph.html",
-                    dataSource=data, site=url,
-                    SERVER_NAME=settings.SERVER_NAME)
