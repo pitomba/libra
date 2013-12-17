@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block js_frame %}
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
- {% end %}
+{% end %}
+
 {% block js_top %}
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
 <script type="text/javascript" src="http://cdn3.devexpress.com/jslib/13.2.5/js/dx.chartjs.js"></script>
 {% end %}
+
+
 {% block content %}
 <div id="chartContainer" style="max-width:1024px;height: 400px;" ></div>
         <script>

@@ -15,10 +15,6 @@ class PageHandler(RequestHandler):
     def get(self, **kwargs):
         self.render("index.html")
 
-    def post(self, **kwargs):
-        page = PageAnalytic(self.get_argument("url"))
-        self.render("index.html")
-
 
 class UserPageHandler(RequestHandler):
 
