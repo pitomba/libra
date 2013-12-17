@@ -1,5 +1,10 @@
 @import "compass/css3";
 
+section{
+    width: 350px;
+    float: left;
+}
+
 body {
     margin: 0 auto;
 }
@@ -20,10 +25,14 @@ h1 {
 }
 
 h2 {
-    display: inline;
     margin-right: 20px;
     vertical-align: top;
     color: #333;
+}
+
+    
+.new-page{
+    display: inline;
 }
 
 form {
@@ -39,17 +48,32 @@ nav{
 
 .user-info{
     color: #5b5b5b;
+    width: 200px;
+    
+    img{
+        displat: block;
+        float: left;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 10px;
+        position: relative;
+        top: -2px;
+    }
 }
 
 .logout{
     display: none;
     cursor: pointer;
     position: absolute;
-    right: 0;
+    right: 55px;
 }
 
 .user-name{
     font-weight: bold;
+    display: block;
+    float: left;
+    height: 35px;
     
     &:hover{
         .logout{
@@ -93,9 +117,13 @@ li {
     font-weight: bold;
 }
 
+.social{
+
+}
+
 header {
     height: 90px;
-    margin: 0 auto;
+    margin-bottom: 30px;
     padding-top: 10px;
     border-bottom: 3px solid orangered;
     background-color: beige;
@@ -125,10 +153,6 @@ header {
 }
 
 .history {
-    position: absolute;
-    overflow: hidden;
-    margin-top: 25px;
-    width: 450px;
     font-family: Helvetica, sans-serif;
 }
 
